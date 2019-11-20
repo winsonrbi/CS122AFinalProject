@@ -3,7 +3,7 @@
  *
  * Created: 11/7/2019 6:53:33 PM
  * Author : winso
- */ 
+ */
 
 #include <avr/io.h>
 #include <stdlib.h>
@@ -24,7 +24,7 @@ unsigned int ammoBack = 0;
 unsigned int currTarget = 0;
 unsigned int timeLeft = 0;
 unsigned int score = 0;
-unsigned int wait = 0;	
+unsigned int wait = 0;
 volatile unsigned char  previousPins = 0;
 volatile unsigned char pins = 0;
 //====END OF GLOBALS=====
@@ -38,7 +38,7 @@ ISR(PCINT1_vect){
 	}
 }
 */
-	
+
 void DisplayString( unsigned char column, const unsigned char* string) {
 	unsigned char c = column;
 	while(*string) {
@@ -53,7 +53,7 @@ int timerSM(int timerState){
 		timeLeft = 60;
 		timerState = timerSM_Countdown;
 		break;
-		
+
 		case timerSM_Countdown:
 		if(timeLeft > 0){
 			timeLeft = timeLeft - 1;
@@ -64,7 +64,7 @@ int timerSM(int timerState){
 			GameOver();
 		}
 		break;
-		
+
 		case timerSM_GameOver:
 		timerState = timerSM_init;
 		break;
@@ -79,12 +79,12 @@ int targetSelectSM(int targetSelectState){
 		score = 0;
 		targetSelectState = targetSelectSM_targetSelect;
 		break;
-		
+
 		case targetSelectSM_targetSelect:
 		//randTarget();
 		targetSelectState = targetSelectSM_hitWait;
 		break;
-		
+
 		case targetSelectSM_hitWait:
 		++wait;
 		if(wait == 10){ //2 Seconds is over, time to switch targets
@@ -105,11 +105,11 @@ int LCDDisplaySM(int LCDDisplayState){
 		case LCDDisplaySM_update:
 		//TODO: Display on Screen the score and Time Left us itoa()
 		sprintf(combineString,"Time: %d        Score: %d",timeLeft,score);
-		DisplayString(1,combineString);		
+		DisplayString(1,combineString);
 		LCDDisplayState = LCDDisplaySM_update;
-		
+
 		break;
-		
+
 		default:
 		LCDDisplayState = LCDDisplaySM_update;
 	}
@@ -124,7 +124,7 @@ unsigned int hitCheck(){
 	//Used by PCINT Interrupt to check whether correct target was hit, compare Target to IR receiver
 	//Returns true if correct target was hit
 	return 1;
-	
+
 }
 void randTarget(){
 	randomNumber = rand()%3;
@@ -150,8 +150,8 @@ void GameOver(){
 }
 
 int main(void)
-{	
-	
+{
+
 	(PCMSK1) |= (1<< PCINT8);
 	(PCICR) |= (1<< PCIE1);
 	sei();
@@ -165,30 +165,30 @@ int main(void)
 	static task task1;
 	static task task2;
 	static task task3;
-	
+
 	task *tasks[] = {&task1, &task2, &task3};
 	const unsigned short numTasks = sizeof(tasks)/sizeof(task*);
-	
+
 	task1.state = timerSM_init;
 	task1.period = 1000;
 	task1.elapsedTime = task1.period;
 	task1.TickFct = &timerSM;
-	
+
 	task2.state = targetSelectSM_init;
 	task2.period = 200;
 	task2.elapsedTime = task2.period;
 	task2.TickFct = &targetSelectSM;
-	
+
 	task3.state = LCDDisplaySM_update;
 	task3.period = 200;
 	task3.elapsedTime = task3.period;
 	task3.TickFct = &LCDDisplaySM;
-	
+
 	TimerSet(200);
 	TimerOn();
 	unsigned int i;
 	//====End of Task Scheduler Setup====
-    while (1) 
+    while (1)
     {
 		for( i = 0; i < numTasks; i++){
 			if(tasks[i]->elapsedTime == tasks[i]->period){
@@ -197,9 +197,7 @@ int main(void)
 			}
 			tasks[i] ->elapsedTime += 200;
 		}
-		PORTB = PORTA;
 		while(!TimerFlag);
-		TimerFlag = 0;		
+		TimerFlag = 0;
     }
 }
-
