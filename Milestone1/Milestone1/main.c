@@ -21,7 +21,7 @@ char testCountString[2];
 char combineString [8];
 unsigned int randomNumber = 0;
 unsigned int ammoBack = 0;
-unsigned int currTarget = 0;
+unsigned char currTarget = 0;
 unsigned int timeLeft = 0;
 unsigned int score = 0;
 unsigned int wait = 0;
@@ -29,15 +29,26 @@ volatile unsigned char  previousPins = 0;
 volatile unsigned char pins = 0;
 //====END OF GLOBALS=====
 
-/*
-ISR(PCINT1_vect){
-	previousPins = pins;
-	pins = (PINB & 0x03);
-	if(pins == 0x01){
+void hitCheck(unsigned char pins){
+	//Used by PCINT Interrupt to check whether correct target was hit, compare Target to IR receiver
+	//Returns true if correct target was hit
+	//TODO: Fix if statement if not correct
+	if(pins == currTarget){
+		if(ammoBack == 0){
+			sendToGun(0x01);
+		}
 		score++;
+		return;
+	}
+	else{
+		return;
 	}
 }
-*/
+ISR(PCINT1_vect){
+	pins = (PINB & 0x03);
+	hitCheck(pins);
+}
+
 
 void DisplayString( unsigned char column, const unsigned char* string) {
 	unsigned char c = column;
@@ -81,7 +92,7 @@ int targetSelectSM(int targetSelectState){
 		break;
 
 		case targetSelectSM_targetSelect:
-		//randTarget();
+		randTarget();
 		targetSelectState = targetSelectSM_hitWait;
 		break;
 
@@ -103,8 +114,7 @@ enum LCDDisplayStates{LCDDisplaySM_update, LCDDisplaySM_GameOver};
 int LCDDisplaySM(int LCDDisplayState){
 	switch(LCDDisplayState){
 		case LCDDisplaySM_update:
-		//TODO: Display on Screen the score and Time Left us itoa()
-		sprintf(combineString,"Time: %d        Score: %d",timeLeft,score);
+		sprintf(combineString,"Time: %02d        Score: %d",timeLeft,score);
 		DisplayString(1,combineString);
 		LCDDisplayState = LCDDisplaySM_update;
 
@@ -120,33 +130,47 @@ void sendToGun(unsigned char sendValue){
 	while(USART_IsSendReady(0) == 0); //Wait till send is ready then send value to gun.
 	USART_Send(sendValue,0);
 }
-unsigned int hitCheck(){
-	//Used by PCINT Interrupt to check whether correct target was hit, compare Target to IR receiver
-	//Returns true if correct target was hit
-	return 1;
 
-}
 void randTarget(){
+	//TODO FINISH LED COLORS AND OUTPUT
 	randomNumber = rand()%3;
 	ammoBack = rand()% 3;
 	if(randomNumber == 0){
-		PORTA = 0x01;
+		if(ammoBack == 0){
+			PORTA = 0X0F;
+		}
+		else{
+			//Green Light
+		}
+		currTarget = 0x01;
 	}
 	else if (randomNumber == 1){
-		PORTA = 0x02;
+		if(ammoBack == 0){
+			//White Light
+			PORTA = 0x38;
+		}
+		else{
+			//Green Light
+		}		
+		currTarget = 0x02;
 	}
 	else{
-		PORTA = 0x04;
+		if(ammoBack == 0){
+			//White Light
+		}
+		else{
+			//Green Light
+		}
+		currTarget = 0x04;
 	}
 	return;
 }
 void GameOver(){
-	//TODO: Send Game Over Signal to Gun
-	//task1.state =  timerSM_init;
-	//task2.state = targetSelectSM_init;
-	//task3.state = LCDDisplaySM_update;
-	//TODO: Display Game Over and Score
-	return;
+	char gameOverString[64];
+	sendToGun(0x02);
+	sprintf(gameOverString,"Game Over,      Final Score: %d",score);
+	LCD_DisplayString(1, gameOverString);
+	while(1);
 }
 
 int main(void)
@@ -188,6 +212,8 @@ int main(void)
 	TimerOn();
 	unsigned int i;
 	//====End of Task Scheduler Setup====
+	//Send start game signal to gun
+	sendToGun(0x03);
     while (1)
     {
 		for( i = 0; i < numTasks; i++){
