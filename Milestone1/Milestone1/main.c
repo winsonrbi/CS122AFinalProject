@@ -36,7 +36,7 @@ void commTranslate(unsigned char data){
 		GameOver();
 	}
 	else{
-		--bullets;
+		bullets = data;
 	}
 }
 void hitCheck(unsigned char pins){
@@ -84,7 +84,9 @@ int timerSM(int timerState){
 	unsigned char payload = 0x00;
 	if(USART_HasReceived(0)){ //Message Received
 		payload = USART_Receive(0);
+		USART_Flush(0);
 		commTranslate(payload);
+		
 	}
 	switch(timerState){
 		case timerSM_init:
@@ -147,6 +149,7 @@ int LCDDisplaySM(int LCDDisplayState){
 	unsigned char payload = 0x00;
 	if(USART_HasReceived(0)){ //Message Received
 		payload = USART_Receive(0);
+		USART_Flush(0);
 		commTranslate(payload);
 	}
 	switch(LCDDisplayState){
@@ -167,6 +170,7 @@ void sendToGun(unsigned char sendValue){
 unsigned char payload = 0x00;
 if(USART_HasReceived(0)){ //Message Received
 	payload = USART_Receive(0);
+	USART_Flush(0);
 	commTranslate(payload);
 }
 	while(USART_IsSendReady(0) == 0); //Wait till send is ready then send value to gun.
@@ -228,6 +232,7 @@ int commStateSM(int commState){
 		case commStateSM_loop:
 		if(USART_HasReceived(0)){ //Message Received
 			payload = USART_Receive(0);
+			USART_Flush(0);
 			commTranslate(payload);
 		}
 		commState = commStateSM_loop;
@@ -259,6 +264,7 @@ int main(void)
 	DDRA = 0xFF; PORTA = 0x00;
 	LCD_init();
 	initUSART(0);
+	USART_Flush(0);
 	//====Task Scheduler Setup====
 	static task task1;
 	static task task2;
@@ -296,9 +302,12 @@ int main(void)
 	sendToGun(0x03);
     while (1)
     {	
+		/*
 		while(USART_HasReceived(0)){
 			LCD_DisplayString(1,USART_Receive(0));
+			USART_Flush(0);
 		}
+		*/
 		for( i = 0; i < numTasks; i++){
 			if(tasks[i]->elapsedTime == tasks[i]->period){
 				tasks[i]->state = tasks[i]->TickFct(tasks[i]->state);

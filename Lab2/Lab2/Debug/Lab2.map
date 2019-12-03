@@ -1,15 +1,17 @@
 Archive member included to satisfy reference by file (symbol)
 
-d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
-                              main.o (__udivmodqi4)
-d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
-                              main.o (__udivmodsi4)
 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
                               D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega1284/avr51/crtatmega1284.o (exit)
 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_copy_data.o)
                               main.o (__do_copy_data)
 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_clear_bss.o)
                               main.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+slaveState          0x1               main.o
+leaderState         0x1               main.o
 
 Discarded input sections
 
@@ -18,24 +20,6 @@ Discarded input sections
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
- .text.write    0x00000000       0x3c main.o
- .text.write_cmd
-                0x00000000        0x8 main.o
- .text.findGCD  0x00000000       0x5a main.o
- .text.delay_ms
-                0x00000000       0x26 main.o
- .text.LCD_WriteCommand
-                0x00000000       0x14 main.o
- .text.LCD_ClearScreen
-                0x00000000        0x8 main.o
- .text.LCD_Cursor
-                0x00000000       0x14 main.o
- .text.LCD_init
-                0x00000000       0x2a main.o
- .text.LCD_WriteData
-                0x00000000       0x14 main.o
- .text.LCD_DisplayString
-                0x00000000       0x38 main.o
  .text.TimerOff
                 0x00000000        0x6 main.o
  .text.TimerISR
@@ -46,58 +30,10 @@ Discarded input sections
                 0x00000000       0x14 main.o
  .text.USART_HasReceived
                 0x00000000       0x14 main.o
- .text.nokia_lcd_init
-                0x00000000       0x88 main.o
- .text.nokia_lcd_clear
-                0x00000000       0x26 main.o
- .text.nokia_lcd_power
-                0x00000000       0x10 main.o
- .text.nokia_lcd_set_pixel
-                0x00000000       0x56 main.o
- .text.nokia_lcd_write_char
-                0x00000000      0x15c main.o
- .text.nokia_lcd_write_string
-                0x00000000       0x26 main.o
- .text.nokia_lcd_set_cursor
-                0x00000000        0xa main.o
- .text.nokia_lcd_render
-                0x00000000       0x34 main.o
- .bss.nokia_lcd
-                0x00000000      0x1fa main.o
- .progmem.data.CHARSET
-                0x00000000      0x1e0 main.o
- .text          0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .data          0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .bss           0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .text.libgcc.mul
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .text.libgcc.div
-                0x00000000       0x18 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .text.libgcc   0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .text.libgcc.prologue
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .text.libgcc.builtins
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .text.libgcc.fmul
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .text.libgcc.fixed
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodqi4.o)
- .text          0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .data          0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .bss           0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .text.libgcc.mul
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .text.libgcc.div
-                0x00000000       0x44 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .text.libgcc   0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .text.libgcc.prologue
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .text.libgcc.builtins
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .text.libgcc.fmul
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
- .text.libgcc.fixed
-                0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_udivmodsi4.o)
+ .text.USART_Receive
+                0x00000000       0x24 main.o
+ .text.slaveSM  0x00000000       0x3a main.o
+ .bss.tempVal   0x00000000        0x1 main.o
  .text          0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  .data          0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
@@ -273,7 +209,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x5d4
+.text           0x00000000      0x33a
  *(.vectors)
  .vectors       0x00000000       0x8c D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega1284/avr51/crtatmega1284.o
                 0x00000000                __vector_default
@@ -385,34 +321,16 @@ END GROUP
  .text.USART_Send
                 0x00000228       0x24 main.o
                 0x00000228                USART_Send
- .text.USART_Receive
-                0x0000024c       0x24 main.o
-                0x0000024c                USART_Receive
- .text.commTranslate
-                0x00000270       0x5a main.o
-                0x00000270                commTranslate
- .text.sendToTarget
-                0x000002ca       0x48 main.o
-                0x000002ca                sendToTarget
- .text.gameOver
-                0x00000312        0x6 main.o
-                0x00000312                gameOver
- .text.shootStateSM
-                0x00000318      0x102 main.o
-                0x00000318                shootStateSM
- .text.displaySM
-                0x0000041a       0x42 main.o
-                0x0000041a                displaySM
- .text.commStateSM
-                0x0000045c       0x38 main.o
-                0x0000045c                commStateSM
- .text.main     0x00000494      0x13c main.o
-                0x00000494                main
-                0x000005d0                . = ALIGN (0x2)
+ .text.leaderSM
+                0x0000024c       0xb2 main.o
+                0x0000024c                leaderSM
+ .text.main     0x000002fe       0x38 main.o
+                0x000002fe                main
+                0x00000336                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000005d0        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
-                0x000005d0                _exit
-                0x000005d0                exit
+ .fini9         0x00000336        0x0 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+                0x00000336                _exit
+                0x00000336                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -431,68 +349,50 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000005d0        0x4 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
+ .fini0         0x00000336        0x4 d:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x000005d4                _etext = .
+                0x0000033a                _etext = .
 
-.data           0x00800100       0x20 load address 0x000005d4
+.data           0x00800100        0x4 load address 0x0000033a
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.gameStart
-                0x00800100        0x2 main.o
-                0x00800100                gameStart
- .data.bulletCount
-                0x00800102        0x2 main.o
-                0x00800102                bulletCount
- .data.coolDownCount
-                0x00800104        0x2 main.o
-                0x00800104                coolDownCount
  .data._avr_timer_M
-                0x00800106        0x4 main.o
-                0x00800106                _avr_timer_M
+                0x00800100        0x4 main.o
+                0x00800100                _avr_timer_M
  *(.gnu.linkonce.d*)
  *(.rodata)
- .rodata        0x0080010a        0x6 main.o
  *(.rodata*)
- .rodata.str1.1
-                0x00800110        0xf main.o
  *(.gnu.linkonce.r*)
-                0x00800120                . = ALIGN (0x2)
- *fill*         0x0080011f        0x1 
-                0x00800120                _edata = .
-                0x00800120                PROVIDE (__data_end, .)
+                0x00800104                . = ALIGN (0x2)
+                0x00800104                _edata = .
+                0x00800104                PROVIDE (__data_end, .)
 
-.bss            0x00800120       0x28
-                0x00800120                PROVIDE (__bss_start, .)
+.bss            0x00800104        0x8
+                0x00800104                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.task3.2365
-                0x00800120        0xb main.o
- .bss.task2.2364
-                0x0080012b        0xb main.o
- .bss.task1.2363
-                0x00800136        0xb main.o
- .bss.tempA     0x00800141        0x1 main.o
-                0x00800141                tempA
- .bss.tempB     0x00800142        0x1 main.o
-                0x00800142                tempB
+ .bss.tempA     0x00800104        0x1 main.o
+                0x00800104                tempA
  .bss._avr_timer_cntcurr
-                0x00800143        0x4 main.o
-                0x00800143                _avr_timer_cntcurr
+                0x00800105        0x4 main.o
+                0x00800105                _avr_timer_cntcurr
  .bss.TimerFlag
-                0x00800147        0x1 main.o
-                0x00800147                TimerFlag
+                0x00800109        0x1 main.o
+                0x00800109                TimerFlag
  *(COMMON)
-                0x00800148                PROVIDE (__bss_end, .)
-                0x000005d4                __data_load_start = LOADADDR (.data)
-                0x000005f4                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080010a        0x2 main.o
+                0x0080010a                slaveState
+                0x0080010b                leaderState
+                0x0080010c                PROVIDE (__bss_end, .)
+                0x0000033a                __data_load_start = LOADADDR (.data)
+                0x0000033e                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800148        0x0
+.noinit         0x0080010c        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00800148                _end = .
+                0x0080010c                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -557,42 +457,42 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x140
+.debug_aranges  0x00000000       0x90
  *(.debug_aranges)
  .debug_aranges
-                0x00000000      0x140 main.o
+                0x00000000       0x90 main.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x17b8
+.debug_info     0x00000000      0xcf7
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x792 D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega1284/avr51/crtatmega1284.o
- .debug_info    0x00000792     0x1026 main.o
+ .debug_info    0x00000792      0x565 main.o
 
-.debug_abbrev   0x00000000      0xa71
+.debug_abbrev   0x00000000      0x916
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x729 D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega1284/avr51/crtatmega1284.o
- .debug_abbrev  0x00000729      0x348 main.o
+ .debug_abbrev  0x00000729      0x1ed main.o
 
-.debug_line     0x00000000      0xca4
+.debug_line     0x00000000      0x60f
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x169 D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega1284/avr51/crtatmega1284.o
- .debug_line    0x00000169      0xb3b main.o
+ .debug_line    0x00000169      0x4a6 main.o
 
-.debug_frame    0x00000000      0x380
+.debug_frame    0x00000000      0x124
  *(.debug_frame)
- .debug_frame   0x00000000      0x380 main.o
+ .debug_frame   0x00000000      0x124 main.o
 
-.debug_str      0x00000000      0x84f
+.debug_str      0x00000000      0x55b
  *(.debug_str)
  .debug_str     0x00000000      0x296 D:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega1284/avr51/crtatmega1284.o
- .debug_str     0x00000296      0x5b9 main.o
-                                0x619 (size before relaxing)
+ .debug_str     0x00000296      0x2c5 main.o
+                                0x2f9 (size before relaxing)
 
-.debug_loc      0x00000000      0xf52
+.debug_loc      0x00000000      0x237
  *(.debug_loc)
- .debug_loc     0x00000000      0xf52 main.o
+ .debug_loc     0x00000000      0x237 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -612,11 +512,11 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x170
+.debug_ranges   0x00000000       0x80
  *(.debug_ranges)
- .debug_ranges  0x00000000      0x170 main.o
+ .debug_ranges  0x00000000       0x80 main.o
 
 .debug_macro
  *(.debug_macro)
-OUTPUT(Milestone1Gun.elf elf32-avr)
+OUTPUT(Lab2.elf elf32-avr)
 LOAD linker stubs

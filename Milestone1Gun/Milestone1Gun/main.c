@@ -21,6 +21,7 @@ void sendToTarget(unsigned char data){
 unsigned char payload = 0x00;
 if(USART_HasReceived(0)){ //Message Received
 	payload = USART_Receive(0);
+	USART_Flush(0);
 	commTranslate(payload);
 }
 	if(USART_IsSendReady(0)){
@@ -61,6 +62,7 @@ int shootStateSM(int shootState){
 unsigned char payload = 0x00;
 if(USART_HasReceived(0)){ //Message Received
 	payload = USART_Receive(0);
+	USART_Flush(0);
 	commTranslate(payload);
 }
 	switch(shootState){
@@ -86,9 +88,9 @@ if(USART_HasReceived(0)){ //Message Received
 			}
 			else{
 				if(bulletCount == 0){
-					sendToTarget(bulletCount);
 					gameOver();
 				}
+				sendToTarget(bulletCount);
 				shootState = shootStateSM_wait;
 			}
 			break;
@@ -127,10 +129,11 @@ enum displayStates{displaySM_init, displaySM_update};
 
 int displaySM(int displayState){
 unsigned char payload = 0x00;
-			if(USART_HasReceived(0)){ //Message Received
-				payload = USART_Receive(0);
-				commTranslate(payload);
-			}
+	if(USART_HasReceived(0)){ //Message Received
+		payload = USART_Receive(0);
+		USART_Flush(0);
+		commTranslate(payload);
+	}
 	switch(displayState){
 		case displaySM_init:
 			if(gameStart == 0){
@@ -161,6 +164,7 @@ int commStateSM(int commState){
 		case commStateSM_loop:
 			if(USART_HasReceived(0)){ //Message Received
 				payload = USART_Receive(0);
+				USART_Flush(0);
 				commTranslate(payload);
 			}
 			commState = commStateSM_loop;
@@ -197,7 +201,7 @@ int main(void)
 	task3.period = 50;
 	task3.elapsedTime = task3.period;
 	task3.TickFct = &displaySM;
-
+	
 	TimerSet(50);
 	TimerOn();
 	unsigned int i;
