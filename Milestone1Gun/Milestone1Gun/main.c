@@ -18,12 +18,12 @@ unsigned int coolDownCount = 2;
 unsigned int bulletCount = 6;
 unsigned int gameStart = 1;
 void sendToTarget(unsigned char data){
-unsigned char payload = 0x00;
-if(USART_HasReceived(0)){ //Message Received
-	payload = USART_Receive(0);
-	USART_Flush(0);
-	commTranslate(payload);
-}
+	unsigned char payload = 0x00;
+	if(USART_HasReceived(0)){ //Message Received
+		payload = USART_Receive(0);
+		USART_Flush(0);
+		commTranslate(payload);
+	}
 	if(USART_IsSendReady(0)){
 		USART_Send(data,0);
 		while(USART_HasTransmitted(0) == 0){
@@ -34,11 +34,13 @@ if(USART_HasReceived(0)){ //Message Received
 
 void gameOver(){
 	//Display Score and Game Over Screen
-	sendToTarget(0xFF);
+	sendToTarget(0xF1);
 	while(1);
 }
 void commTranslate(unsigned char data){
-	if(data == "0x01"){
+	PORTC=data;
+	
+	if(data == 0x01){
 		//Hit a special target, add 3 bullets to bulletCount
 		if((bulletCount + 3) > 6){
 			bulletCount = 6;
@@ -48,11 +50,11 @@ void commTranslate(unsigned char data){
 		}
 		return;
 	}
-	if(data == "0x02"){
+	if(data == 0x02){
 		//Time is up
 		gameOver();
 	}
-	if(data == "0x03"){
+	if(data == 0x03){
 		//Start Game
 		gameStart = 1;
 	}
@@ -177,6 +179,7 @@ int main(void)
 {
 	DDRB = 0xFF; PORTB = 0x00;
 	//PORTC FOR Nokia 5110 LCD
+	DDRC = 0xFF; PORTC = 0x00;
 	DDRA = 0x00; PORTA = 0xFF;
 	initUSART(0);
 	USART_Flush(0);
