@@ -43,20 +43,17 @@ void hitCheck(unsigned char pins){
 	//Used by PCINT Interrupt to check whether correct target was hit, compare Target to IR receiver
 	//Returns true if correct target was hit
 	//TODO: Fix if statement if not correct
+	if(pinUp == 1){
+		pinUp = 0;
+		return;
+	}
 	if(pins == currTarget){
 		if(ammoBack == 0){
-			if((bullets + 3) > 6){
-				bullets = 6;
-			}
-			else{
-				bullets = bullets + 3;
-			}
 			sendToGun(0x01);
+			score++;
 		}
-		if(pinUp == 1){
-			pinUp = 0;
-		}
-		else if(pinUp == 0){
+		if(pinUp == 0){
+			currTarget = 0xFF;
 			pinUp = 1;
 			score++;
 		}		
