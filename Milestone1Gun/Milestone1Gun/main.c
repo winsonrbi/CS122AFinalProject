@@ -13,7 +13,7 @@
 #include "nokia5110.c"
 
 unsigned char tempB = 0x00;
-unsigned char tempA = 0x00;
+unsigned char tempC = 0x00;
 unsigned int coolDownCount = 2;
 unsigned int bulletCount = 6;
 unsigned int gameStart = 1;
@@ -77,7 +77,7 @@ if(USART_HasReceived(0)){ //Message Received
 			}
 			break;
 		case shootStateSM_wait:
-			if(tempA){
+			if(tempC){
 				if(bulletCount > 0){
 					bulletCount = bulletCount - 1;
 					sendToTarget(bulletCount);
@@ -113,7 +113,7 @@ if(USART_HasReceived(0)){ //Message Received
 			}
 			break;
 		case shootStateSM_waitRelease:
-			if(tempA == 0x01){
+			if(tempC == 0x01){
 				shootState = shootStateSM_waitRelease;
 			}
 			else{
@@ -130,7 +130,8 @@ if(USART_HasReceived(0)){ //Message Received
 enum displayStates{displaySM_init, displaySM_update};
 
 int displaySM(int displayState){
-unsigned char payload = 0x00;
+	unsigned char payload = 0x00;
+	char displayString[16];
 	if(USART_HasReceived(0)){ //Message Received
 		payload = USART_Receive(0);
 		USART_Flush(0);
@@ -146,7 +147,10 @@ unsigned char payload = 0x00;
 			}
 			break;
 		case displaySM_update:
-			//display bullets
+			sprintf(displayString,"Bullets: %d",bulletCount);
+			nokia_lcd_clear();
+			nokia_lcd_write_string(displayString,1);
+			nokia_lcd_render();
 			displayState = displaySM_update;
 			break;
 	}
@@ -179,9 +183,11 @@ int main(void)
 {
 	DDRB = 0xFF; PORTB = 0x00;
 	//PORTC FOR Nokia 5110 LCD
-	DDRC = 0xFF; PORTC = 0x00;
+	DDRC = 0x00; PORTC = 0xFF;
 	DDRA = 0x00; PORTA = 0xFF;
 	initUSART(0);
+	nokia_lcd_init();
+	nokia_lcd_clear();
 	USART_Flush(0);
 	static task task1;
 	static task task2;
@@ -211,7 +217,7 @@ int main(void)
 	//====End of Task Scheduler Setup====
 	while (1)
 	{
-		tempA = PINA & 0x01;
+		tempC = PINC & 0x01;
 		for( i = 0; i < numTasks; i++){
 			if(tasks[i]->elapsedTime == tasks[i]->period){
 				tasks[i]->state = tasks[i]->TickFct(tasks[i]->state);
