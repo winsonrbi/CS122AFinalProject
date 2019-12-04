@@ -37,6 +37,9 @@ void commTranslate(unsigned char data){
 	}
 	else{
 		bullets = data;
+		if(bullets == 0){
+			GameOver();
+		}
 	}
 }
 void hitCheck(unsigned char pins){
