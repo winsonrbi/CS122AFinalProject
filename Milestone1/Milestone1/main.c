@@ -54,6 +54,8 @@ void hitCheck(unsigned char pins){
 		}
 		if(pinUp == 0){
 			currTarget = 0xFF;
+			PORTA = 0x00;
+			PORTD = PORTD & 0xE3;
 			pinUp = 1;
 			score++;
 		}		
@@ -180,12 +182,14 @@ void randTarget(){
 	ammoBack = rand()% 3;
 	if(randomNumber == 0){
 		if(ammoBack == 0){
+			PORTA = 0x00;
 			PORTA = 0X07;
 			PORTD = PORTD & 0xE3;
 		}
 		else{
 			//Green Light
-			PORTA = 0x01;
+			PORTA = 0x00;
+			PORTA = 0x02;
 			PORTD = PORTD & 0xE3;
 		}
 		currTarget = 0x01;
@@ -193,12 +197,14 @@ void randTarget(){
 	else if (randomNumber == 1){
 		if(ammoBack == 0){
 			//White Light
+			PORTA = 0x00;
 			PORTA = 0x38;
 			PORTD = PORTD & 0xE3;
 		}
 		else{
 			//Green Light
-			PORTA = 0x08;
+			PORTA = 0x00;
+			PORTA = 0x10;
 			PORTD = PORTD & 0xE3;
 		}		
 		currTarget = 0x02;
@@ -206,12 +212,14 @@ void randTarget(){
 	else{
 		if(ammoBack == 0){
 			//White Light
+			PORTD = PORTD & 0xE3;
 			PORTD = PORTD | 0x01C;
 			PORTA = 0x00;
 		}
 		else{
 			//Green Light
-			PORTD = PORTD | 0x04;
+			PORTD = PORTD & 0xE3;
+			PORTD = PORTD | 0x08;
 			PORTA = 0x00;
 		}
 		currTarget = 0x04;
