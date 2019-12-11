@@ -35,6 +35,9 @@ void sendToTarget(unsigned char data){
 void gameOver(){
 	//Display Score and Game Over Screen
 	sendToTarget(0xF1);
+	nokia_lcd_clear();
+	nokia_lcd_write_string("Game Over",1);
+	nokia_lcd_render();
 	while(1);
 }
 void commTranslate(unsigned char data){
